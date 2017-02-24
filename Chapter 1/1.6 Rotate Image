@@ -1,0 +1,51 @@
+class rotateImage{
+ private int [][] image;
+ private int n;
+ public rotateImage(int[][] img){
+  image = img;
+  n = img.length;
+ }
+
+ public void rotate(){
+  for(int i=0;i<n-1;i++){
+   for(int j=0; j<n-1-i; j++){
+       int temp = image[i][j];
+       image[i][j] = image[n-j-1][n-i-1];
+       image[n-j-1][n-i-1] = temp;
+   }
+  }
+
+  for(int i=0; i<n/2;++i){
+   for(int j = 0;j<n;j++)
+   {
+       int temp =image[i][j];
+       image[i][j] = image[n-i-1][j];
+       image[n-i-1][j] = temp;
+   }
+  }
+
+ }
+
+/*for test only*/
+ public void present(){
+  for(int i=0;i<image.length;i++){
+      for(int j=0;j<image[i].length;j++){ 
+ 
+ System.out.print(image[i][j]+" "); 
+ 
+ } 
+        System.out.println();
+ }
+ }
+
+
+ public static void main(String[] args){
+  int[][] img= {{1,2,3,4},{5,6,7,8},{9,10,11,12},{13,14,15,16}};
+
+  rotateImage ri = new rotateImage(img);
+  ri.rotate();
+  ri.present();
+
+
+ }
+}
