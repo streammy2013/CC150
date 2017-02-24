@@ -1,0 +1,61 @@
+
+public class compression {
+ public String strCompression(String s){
+  int count = countCompression(s);
+  char[] comp = new char[count];
+
+  char c = s.charAt(0);
+  int cnt=1;
+  
+  int idx = 0;
+
+  for(int i=0;i<s.length();++i){
+   if(s.charAt(i) == c){
+    cnt++;
+   }else{
+    comp[idx++] = c;
+    
+    for(char a:(String.valueOf(cnt)).toCharArray()) comp[idx++] = a;
+
+
+    c = s.charAt(i);
+    cnt=1;
+   }
+  }
+  comp[idx++] = c;
+  for(char a:(String.valueOf(cnt)).toCharArray()) comp[idx++] = a;
+  return String.valueOf(comp);
+
+ }
+
+ public int countCompression(String s){
+  if(s.length()==0) return 0;
+
+  int n = s.length();
+
+  int res=0, cnt=1;
+  int i=0;
+  char c = s.charAt(i);
+  i++;
+
+  while(i<n){
+
+   if(s.charAt(i)==c){
+    cnt++;
+   }else{
+    res += 1+ String.valueOf(cnt).length();
+    cnt = 1;
+    c = s.charAt(i);
+   }
+   i++;
+  }
+  res += 1+ String.valueOf(cnt).length();
+  return res;
+ }
+ 
+ public static void main(String[] args){
+  compression comp = new compression();
+  System.out.println(comp.strCompression("aabcccccaaa"));
+ }
+
+}
